@@ -6,7 +6,14 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@chakra-ui/react"],
   },
   images: {
-    domains: ["s3-sa-east-1.amazonaws.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "s3-sa-east-1.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 }
 
