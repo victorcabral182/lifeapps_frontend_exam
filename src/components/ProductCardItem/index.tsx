@@ -5,11 +5,19 @@ import Image from "next/image"
 interface IProductCardItemProps {
   item: IProduct
   isPromo: boolean
+  onClick: VoidFunction
 }
 
-export const ProductCardItem = ({ item, isPromo }: IProductCardItemProps) => {
+export const ProductCardItem = ({
+  item,
+  isPromo,
+  onClick,
+}: IProductCardItemProps) => {
   return (
-    <div className="relative cursor-pointer transition-all duration-150 hover:scale-105 shadow-xl rounded-b-lg rounded-t-sm overflow-hidden ">
+    <div
+      onClick={onClick}
+      className="relative cursor-pointer transition-all duration-150 hover:scale-105 shadow-xl rounded-b-lg rounded-t-sm overflow-hidden"
+    >
       <div className=" flex justify-center items-center ">
         <Image
           width={1500}

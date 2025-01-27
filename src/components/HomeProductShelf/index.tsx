@@ -7,8 +7,11 @@ import { Button, Pagination, Select } from "antd"
 import { useEffect, useState } from "react"
 import { ProductCardItem } from "../ProductCardItem"
 import { buttons, filterOptions } from "@/constants/HomePage"
+import { useRouter } from "next/navigation"
 
 export const MainProductShelf = () => {
+  const { push } = useRouter()
+
   const [data, setData] = useState<IData>()
   const [filter, setFilter] = useState<IHomeFilter>({
     type: "ALL",
@@ -81,7 +84,12 @@ export const MainProductShelf = () => {
           {data?.items?.map((item: IProduct) => {
             const isPromo = Boolean(item.discount_percentage)
             return (
-              <ProductCardItem isPromo={isPromo} item={item} key={item.id} />
+              <ProductCardItem
+                item={item}
+                key={item.id}
+                isPromo={isPromo}
+                onClick={() => push(`/product/${item.id}`)}
+              />
             )
           })}
         </div>
