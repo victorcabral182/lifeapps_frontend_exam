@@ -4,6 +4,7 @@ interface IProductsParams {
   _page?: number
   _per_page?: number
   _sort?: string
+  category?: string
 }
 
 async function getProducts(params: IProductsParams) {

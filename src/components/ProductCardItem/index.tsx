@@ -9,8 +9,8 @@ interface IProductCardItemProps {
 
 export const ProductCardItem = ({ item, isPromo }: IProductCardItemProps) => {
   return (
-    <div className="relative cursor-pointer transition-all duration-150 hover:scale-105">
-      <div className=" flex justify-center items-center overflow-hidden">
+    <div className="relative cursor-pointer transition-all duration-150 hover:scale-105 shadow-xl rounded-b-lg rounded-t-sm overflow-hidden ">
+      <div className=" flex justify-center items-center ">
         <Image
           width={1500}
           height={1500}
