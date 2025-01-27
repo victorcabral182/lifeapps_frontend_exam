@@ -1,5 +1,3 @@
-"use client"
-
 import { MainProductShelf } from "@/components/HomeProductShelf"
 import { MainBanner } from "@/components/MainBanner"
 

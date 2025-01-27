@@ -14,4 +14,9 @@ interface IData {
   total: number
 }
 
-export { IProduct, IData }
+interface IOption {
+  value: string | number
+  label: string
+}
+
+export { IProduct, IData, IOption }

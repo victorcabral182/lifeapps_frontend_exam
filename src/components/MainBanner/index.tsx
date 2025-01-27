@@ -6,7 +6,7 @@ import "swiper/css/pagination"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Controller } from "swiper/modules"
 import Image from "next/image"
-import { mainBannerItems } from "@/constants/main-banner"
+import { mainBannerItems } from "@/constants/HomePage"
 
 export const MainBanner = () => {
   const swiperModules = [Autoplay, Controller]
@@ -21,7 +21,7 @@ export const MainBanner = () => {
         pagination={{ clickable: true }}
         className="w-full max-h-[500px] overflow-hidden"
       >
-        {mainBannerItems.map((e) => {
+        {mainBannerItems?.map((e) => {
           return (
             <SwiperSlide key={e.id}>
               <Image

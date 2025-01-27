@@ -1,4 +1,6 @@
-type TFilter = "ALL" | "SNEAKERS" | "T_SHIRTS" | "PANTS"
+import { StaticImageData } from "next/image"
+
+type TFilter = "ALL" | "Tênis" | "Camisetas" | "Calças" | ""
 
 type TSort = "price" | "promotional_price" | ""
 
@@ -9,4 +11,10 @@ interface IHomeFilter {
   pageSize?: number
 }
 
-export { TFilter, TSort, IHomeFilter }
+interface IBannerItem {
+  id: number
+  image: StaticImageData
+  alt: string
+}
+
+export { TFilter, TSort, IHomeFilter, IBannerItem }
