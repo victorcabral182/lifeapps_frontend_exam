@@ -6,20 +6,24 @@ import "swiper/css/controller"
 import "swiper/css/pagination"
 
 import { useEffect, useState } from "react"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { Breadcrumb, Button } from "antd"
+import { Breadcrumb } from "antd"
 import { SwiperSlide, Swiper } from "swiper/react"
 import { Autoplay, Controller } from "swiper/modules"
 
 import { getProductById, getProducts } from "@/services/products"
 import { IProduct } from "@/types"
 import { ProductCardItem } from "@/components/ProductCardItem"
-import { formatCurrency } from "@/utils"
+import { GeneralProductInfo } from "@/components/GeneralProductInfo"
+
+const swiperModules = [Autoplay, Controller]
+const autoplayConfig = { delay: 4000 }
 
 export default function ProductIdPage() {
   const { id }: { id: string } = useParams()
+  const { push } = useRouter()
 
   const [data, setData] = useState<IProduct>()
   const [swiper, setSwiper] = useState<IProduct[]>([])
@@ -40,9 +44,6 @@ export default function ProductIdPage() {
   useEffect(() => {
     if (id) tryGetInfo(id)
   }, [id])
-
-  const swiperModules = [Autoplay, Controller]
-  const autoplayConfig = { delay: 4000 }
 
   if (data)
     return (
@@ -65,35 +66,9 @@ export default function ProductIdPage() {
             hideExtraInfo={true}
             isPromo={Boolean(data?.discount_percentage)}
           />
-          <div className="flex flex-col gap-4 justify-between">
-            <div className="flex flex-col gap-2">
-              <p className="text-2xl font-semibold">{data?.name}</p>
-              <div className="flex items-center gap-2">
-                {data?.promotional_price && (
-                  <p className="line-through text-xs font-light">
-                    {formatCurrency(data?.promotional_price)}
-                  </p>
-                )}
-                <p
-                  className={`text-xl font-semibold ${
-                    data?.promotional_price && "text-[#FF0000]"
-                  }`}
-                >
-                  {data?.promotional_price
-                    ? formatCurrency(data?.promotional_price)
-                    : formatCurrency(data?.price)}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm font-semibold">Descrição:</p>
-                <p>{data?.description}</p>
-              </div>
-            </div>
-            <Button type="primary" size="large" className="uppercase">
-              Adicionar ao carrinho
-            </Button>
-          </div>
+          <GeneralProductInfo {...data} />
         </div>
+        <p className="font-semibold">Veja outros produtos como este</p>
         <Swiper
           speed={1000}
           slidesPerView={4}
@@ -113,7 +88,8 @@ export default function ProductIdPage() {
                     alt={e.name}
                     width={2000}
                     height={2000}
-                    className="object-cover aspect-square"
+                    className="object-cover aspect-square cursor-pointer"
+                    onClick={() => push(`/product/${e.id}`)}
                   />
                 </SwiperSlide>
               )

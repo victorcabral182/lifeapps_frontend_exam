@@ -21,11 +21,10 @@ export const Header = () => {
           allowClear
           placeholder="Quero comprar algo específico..."
         />
-        <Button className="aspect-square" onClick={() => {}}>
+        <Button className="w-8" onClick={() => {}}>
           <UserOutlined />
         </Button>
-
-        <Button className="aspect-square" onClick={() => {}}>
+        <Button className="w-8" onClick={() => {}}>
           <ShoppingCartOutlined />
         </Button>
       </div>

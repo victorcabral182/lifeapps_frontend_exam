@@ -4,8 +4,7 @@ import "./globals.css"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import "@ant-design/v5-patch-for-react-19"
-import { Provider } from "react-redux"
-import { store } from "@/redux/store"
+import ReduxProvider from "./provider"
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -25,11 +24,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body className={`${inter.variable}  antialiased`}>
-        <Provider store={store}>
+        <ReduxProvider>
           <Header />
           {children}
           <Footer />
-        </Provider>
+        </ReduxProvider>
       </body>
     </html>
   )

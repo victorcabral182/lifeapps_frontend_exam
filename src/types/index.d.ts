@@ -1,4 +1,4 @@
-interface IProduct {
+interface IProduct extends ICart {
   id: string
   name: string
   category: string
@@ -7,6 +7,10 @@ interface IProduct {
   promotional_price: number
   image: string
   description: string
+}
+
+interface ICart {
+  quantity: number
 }
 
 interface IData {
