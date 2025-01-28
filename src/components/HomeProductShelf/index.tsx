@@ -9,7 +9,7 @@ import { ProductCardItem } from "../ProductCardItem"
 import { buttons, filterOptions } from "@/constants/HomePage"
 import { useRouter } from "next/navigation"
 
-export const MainProductShelf = () => {
+export const HomeProductShelf = () => {
   const { push } = useRouter()
 
   const [data, setData] = useState<IData>()
@@ -54,7 +54,7 @@ export const MainProductShelf = () => {
             return (
               <>
                 <Button
-                  key={e}
+                  key={e + Math.random()}
                   htmlType={"button"}
                   type={handleType(e)}
                   onClick={() =>
@@ -86,8 +86,8 @@ export const MainProductShelf = () => {
             return (
               <ProductCardItem
                 item={item}
-                key={item.id}
                 isPromo={isPromo}
+                key={item.id + Math.random()}
                 onClick={() => push(`/product/${item.id}`)}
               />
             )
