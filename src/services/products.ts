@@ -12,4 +12,9 @@ async function getProducts(params: IProductsParams) {
   return response
 }
 
-export { getProducts }
+async function getProductById(id: string) {
+  const response = await api.get(`/products?id=${id}`)
+  return response
+}
+
+export { getProducts, getProductById }

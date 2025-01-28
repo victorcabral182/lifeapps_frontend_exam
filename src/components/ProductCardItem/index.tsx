@@ -6,19 +6,25 @@ interface IProductCardItemProps {
   item: IProduct
   isPromo: boolean
   onClick: VoidFunction
+  hideExtraInfo?: boolean
 }
 
 export const ProductCardItem = ({
   item,
   isPromo,
   onClick,
+  hideExtraInfo = false,
 }: IProductCardItemProps) => {
   return (
     <div
       onClick={onClick}
-      className="relative cursor-pointer transition-all duration-150 hover:scale-105 shadow-xl rounded-b-lg rounded-t-sm overflow-hidden"
+      className={`relative  transition-all duration-150 ${
+        !hideExtraInfo
+          ? "hover:scale-105 cursor-pointer rounded-b-lg rounded-t-sm "
+          : "rounded-lg"
+      } shadow-xl overflow-hidden`}
     >
-      <div className=" flex justify-center items-center ">
+      <div className=" flex justify-center items-center">
         <Image
           width={1500}
           height={1500}
@@ -27,19 +33,21 @@ export const ProductCardItem = ({
           className="object-cover aspect-square"
         />
       </div>
-      <div className="flex items-center justify-between gap-2 border border-gray-300 px-4 border-t-0 rounded-b-lg h-20 max-h-20">
-        <p className="font-semibold">{item.name}</p>
-        <div className="flex flex-col">
-          <p className={`font-semibold ${isPromo && "line-through text-xs"}`}>
-            {formatCurrency(item.price)}
-          </p>
-          {item.promotional_price && (
-            <p className={`font-semibold`}>
-              {formatCurrency(item.promotional_price)}
+      {!hideExtraInfo && (
+        <div className="flex items-center justify-between gap-2 border border-gray-300 px-4 border-t-0 rounded-b-lg h-20 max-h-20">
+          <p className="font-semibold">{item.name}</p>
+          <div className="flex flex-col">
+            <p className={`font-semibold ${isPromo && "line-through text-xs"}`}>
+              {formatCurrency(item.price)}
             </p>
-          )}
+            {item.promotional_price && (
+              <p className={`font-semibold`}>
+                {formatCurrency(item.promotional_price)}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
       {item.discount_percentage && (
         <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-4 py-2 rounded-bl-lg">
           <span>{item.discount_percentage}% OFF</span>
