@@ -1,12 +1,12 @@
 "use client"
 
+import { useState, useCallback } from "react"
+import { useDispatch } from "react-redux"
+import { useRouter } from "next/navigation"
 import { Button, Select } from "antd"
 import { IProduct } from "@/types"
-import { formatCurrency } from "@/utils"
-import { useDispatch } from "react-redux"
-import { useState } from "react"
 import { addItem } from "@/redux/slices/cartSlice"
-import { useRouter } from "next/navigation"
+import { formatCurrency } from "@/utils"
 import { options } from "@/constants/general-constants"
 
 export const GeneralProductInfo = (product: IProduct) => {
@@ -15,10 +15,13 @@ export const GeneralProductInfo = (product: IProduct) => {
 
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1)
 
-  const handleAddToCart = (product: IProduct) => {
+  const handleAddToCart = useCallback(() => {
     dispatch(addItem({ ...product, quantity: selectedQuantity }))
+  }, [dispatch, product, selectedQuantity])
+
+  const handleNavigateToCart = useCallback(() => {
     push("/cart")
-  }
+  }, [push])
 
   return (
     <div className="flex flex-col gap-6 justify-between border rounded-2xl p-6 shadow-lg bg-white max-w-md ml-auto">
@@ -27,16 +30,14 @@ export const GeneralProductInfo = (product: IProduct) => {
         <div className="flex items-center gap-3">
           {product?.discount_percentage && (
             <div>
-              {product?.discount_percentage && (
-                <p className="text-2xl font-thin text-red-500 text-center">
-                  {product?.discount_percentage}%
-                </p>
-              )}
+              <p className="text-2xl font-thin text-red-500 text-center">
+                {product.discount_percentage}%
+              </p>
               {product?.promotional_price && (
                 <>
                   <span className="text-sm font-light text-gray-500">De: </span>
                   <span className="line-through text-sm font-light text-gray-500">
-                    {formatCurrency(product?.price)}
+                    {formatCurrency(product.price)}
                   </span>
                 </>
               )}
@@ -44,12 +45,11 @@ export const GeneralProductInfo = (product: IProduct) => {
           )}
 
           <div className="flex flex-col justify-between">
-            <p className={`text-2xl font-semibold text-gray-800`}>
+            <p className="text-2xl font-semibold text-gray-800">
               {product?.promotional_price
                 ? formatCurrency(product?.promotional_price)
                 : formatCurrency(product?.price)}
             </p>
-            <div className="h-6" />
           </div>
         </div>
         <div>
@@ -69,10 +69,19 @@ export const GeneralProductInfo = (product: IProduct) => {
           size="large"
           type="primary"
           htmlType="button"
-          className="uppercase bg-blue-600 hover:bg-blue-700 border-none font-medium tracking-wider text-white rounded-lg w-full"
-          onClick={() => handleAddToCart(product)}
+          className="uppercase bg-[#007cc3] hover:bg-[#1d4670] border-none font-medium tracking-wider text-white rounded-lg w-full"
+          onClick={handleAddToCart}
         >
           Adicionar ao carrinho
+        </Button>
+        <Button
+          size="large"
+          type="primary"
+          htmlType="button"
+          className="uppercase bg-[#007cc3] hover:bg-blue-700 border-none font-medium tracking-wider text-white rounded-lg w-full"
+          onClick={handleNavigateToCart}
+        >
+          Finalizar compra
         </Button>
       </div>
     </div>

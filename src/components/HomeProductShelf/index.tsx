@@ -52,19 +52,17 @@ export const HomeProductShelf = () => {
         <div className="flex gap-4 w-full px-[256px]">
           {buttons?.map((e) => {
             return (
-              <>
-                <Button
-                  key={e + Math.random()}
-                  htmlType={"button"}
-                  type={handleType(e)}
-                  onClick={() =>
-                    setFilter({ ...filter, type: e, sort: filter.sort })
-                  }
-                  className="uppercase font-semibold w-full rounded-none py-8"
-                >
-                  {e === "ALL" ? "Todos os produtos" : e}
-                </Button>
-              </>
+              <Button
+                key={e}
+                htmlType={"button"}
+                type={handleType(e)}
+                onClick={() =>
+                  setFilter({ ...filter, type: e, sort: filter.sort })
+                }
+                className="uppercase font-semibold w-full rounded-none py-8"
+              >
+                {e === "ALL" ? "Todos os produtos" : e}
+              </Button>
             )
           })}
         </div>
@@ -87,7 +85,7 @@ export const HomeProductShelf = () => {
               <ProductCardItem
                 item={item}
                 isPromo={isPromo}
-                key={item.id + Math.random()}
+                key={item.id}
                 onClick={() => push(`/product/${item.id}`)}
               />
             )
