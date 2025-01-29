@@ -24,19 +24,23 @@ export const GeneralProductInfo = (product: IProduct) => {
   }, [push])
 
   return (
-    <div className="flex flex-col gap-6 justify-between border rounded-2xl p-6 shadow-lg bg-white max-w-md ml-auto">
-      <div className="flex flex-col gap-4">
-        <h2 className="text-3xl font-bold text-gray-800">{product?.name}</h2>
-        <div className="flex items-center gap-3">
+    <div className="flex flex-col gap-4 md:gap-6 border rounded-2xl p-4 md:p-6 shadow-lg bg-white w-full max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
+      <div className="flex flex-col gap-3 md:gap-4">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">
+          {product?.name}
+        </h2>
+        <div className="flex items-center gap-2 md:gap-3">
           {product?.discount_percentage && (
-            <div>
-              <p className="text-2xl font-thin text-red-500 text-center">
+            <div className="text-center">
+              <p className="text-lg md:text-2xl font-thin text-red-500">
                 {product.discount_percentage}%
               </p>
               {product?.promotional_price && (
                 <>
-                  <span className="text-sm font-light text-gray-500">De: </span>
-                  <span className="line-through text-sm font-light text-gray-500">
+                  <span className="text-xs md:text-sm font-light text-gray-500">
+                    De:{" "}
+                  </span>
+                  <span className="line-through text-xs md:text-sm font-light text-gray-500">
                     {formatCurrency(product.price)}
                   </span>
                 </>
@@ -44,8 +48,8 @@ export const GeneralProductInfo = (product: IProduct) => {
             </div>
           )}
 
-          <div className="flex flex-col justify-between">
-            <p className="text-2xl font-semibold text-gray-800">
+          <div className="flex flex-col">
+            <p className="text-xl md:text-2xl font-semibold text-gray-800">
               {product?.promotional_price
                 ? formatCurrency(product?.promotional_price)
                 : formatCurrency(product?.price)}
@@ -53,23 +57,30 @@ export const GeneralProductInfo = (product: IProduct) => {
           </div>
         </div>
         <div>
-          <p className="text-sm font-medium text-gray-700">Descrição:</p>
-          <p className="text-gray-600">{product?.description}</p>
+          <p className="text-xs md:text-sm font-medium text-gray-700">
+            Descrição:
+          </p>
+          <p className="text-gray-600 text-sm md:text-base">
+            {product?.description}
+          </p>
         </div>
       </div>
-      <div className="w-full flex flex-col gap-4">
-        <p className="text-[#007600] font-semibold">Em estoque</p>
+      <div className="w-full flex flex-col gap-3 md:gap-4">
+        <p className="text-[#007600] font-semibold text-sm md:text-base">
+          Em estoque
+        </p>
         <Select
           options={options}
           placeholder="Quantidade"
           value={selectedQuantity}
           onChange={(value) => setSelectedQuantity(value)}
+          className="w-full"
         />
         <Button
           size="large"
           type="primary"
           htmlType="button"
-          className="uppercase bg-[#007cc3] hover:bg-[#1d4670] border-none font-medium tracking-wider text-white rounded-lg w-full"
+          className="uppercase bg-[#007cc3] hover:bg-[#1d4670] border-none font-medium tracking-wider text-xs md:text-sm lg:text-base text-white rounded-lg w-full"
           onClick={handleAddToCart}
         >
           Adicionar ao carrinho
@@ -78,7 +89,7 @@ export const GeneralProductInfo = (product: IProduct) => {
           size="large"
           type="primary"
           htmlType="button"
-          className="uppercase bg-[#007cc3] hover:bg-blue-700 border-none font-medium tracking-wider text-white rounded-lg w-full"
+          className="uppercase bg-[#007cc3] hover:bg-blue-700 border-none font-medium tracking-wider text-xs md:text-sm lg:text-base text-white rounded-lg w-full"
           onClick={handleNavigateToCart}
         >
           Finalizar compra

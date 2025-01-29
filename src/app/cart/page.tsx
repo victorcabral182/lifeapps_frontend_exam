@@ -14,11 +14,18 @@ export default function CartPage() {
   ]
 
   return (
-    <section className="flex flex-col min-h-[calc(100vh-212px)] gap-4 px-[256px] py-8">
-      <Breadcrumb className="pt-4 font-semibold" items={items} />
-      <div className="grid grid-cols-3 mb-8 gap-8">
-        <CartProductList />
-        <CartSummary />
+    <section className="flex flex-col min-h-[calc(100vh-212px)] gap-4 px-4 md:px-[256px] py-8">
+      <Breadcrumb
+        className="pt-4 font-semibold text-sm md:text-base"
+        items={items}
+      />
+      <div className="grid grid-cols-1 lg:grid-cols-3 mb-8 gap-4 md:gap-8">
+        <div className="lg:col-span-2">
+          <CartProductList />
+        </div>
+        <div className="lg:col-span-1">
+          <CartSummary />
+        </div>
       </div>
     </section>
   )
