@@ -24,15 +24,15 @@ export const MainBanner = () => {
         breakpoints={{
           320: {
             slidesPerView: 1,
-            spaceBetween: 10,
+            spaceBetween: 0,
           },
           768: {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 0,
           },
           1024: {
             slidesPerView: 1,
-            spaceBetween: 30,
+            spaceBetween: 0,
           },
         }}
       >

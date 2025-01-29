@@ -12,11 +12,16 @@ const localStorageMiddleware =
   }
 
 const loadCartFromLocalStorage = () => {
+  if (typeof window === "undefined") return []
+
   try {
     const savedCart = localStorage.getItem("cart")
-    return savedCart ? JSON.parse(savedCart) : []
+    if (!savedCart) return []
+
+    return JSON.parse(savedCart)
   } catch (error) {
     console.error("Erro ao carregar carrinho do localStorage:", error)
+    localStorage.removeItem("cart")
     return []
   }
 }
