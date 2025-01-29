@@ -26,6 +26,7 @@ export default function RootLayout({
       <body className={`${inter.variable}  antialiased`}>
         <ReduxProvider>
           <Header />
+          <div className="h-[80px]" />
           {children}
           <Footer />
         </ReduxProvider>
