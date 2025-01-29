@@ -47,19 +47,12 @@ export default function ProductIdPage() {
 
   if (data)
     return (
-      <section className="flex flex-col gap-4 px-[256px]">
+      <section className="flex flex-col gap-4 px-4 md:px-16 lg:px-32 xl:px-64">
         <Breadcrumb
           className="pt-4 font-semibold"
-          items={[
-            {
-              title: <Link href="/">Home</Link>,
-            },
-            {
-              title: data?.name,
-            },
-          ]}
+          items={[{ title: <Link href="/">Home</Link> }, { title: data?.name }]}
         />
-        <div className="grid grid-cols-2 gap-20 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-10">
           <ProductCardItem
             item={data}
             onClick={() => {}}
@@ -71,7 +64,12 @@ export default function ProductIdPage() {
         <p className="font-semibold">Veja outros produtos como este</p>
         <Swiper
           speed={1000}
-          slidesPerView={4}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          }}
           modules={swiperModules}
           spaceBetween={16}
           autoplay={autoplayConfig}
@@ -80,20 +78,18 @@ export default function ProductIdPage() {
         >
           {swiper
             ?.filter((item) => item.id !== data.id)
-            .map((e) => {
-              return (
-                <SwiperSlide key={e.id}>
-                  <Image
-                    src={e.image}
-                    alt={e.name}
-                    width={2000}
-                    height={2000}
-                    className="object-cover aspect-square cursor-pointer"
-                    onClick={() => push(`/product/${e.id}`)}
-                  />
-                </SwiperSlide>
-              )
-            })}
+            .map((e) => (
+              <SwiperSlide key={e.id}>
+                <Image
+                  src={e.image}
+                  alt={e.name}
+                  width={2000}
+                  height={2000}
+                  className="object-cover aspect-square cursor-pointer"
+                  onClick={() => push(`/product/${e.id}`)}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </section>
     )

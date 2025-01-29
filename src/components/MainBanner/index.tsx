@@ -10,7 +10,8 @@ import { mainBannerItems } from "@/constants/HomePage"
 
 export const MainBanner = () => {
   const swiperModules = [Autoplay, Controller]
-  const autoplayConfig = { delay: 4000 }
+  const autoplayConfig = { delay: 4000, disableOnInteraction: false }
+
   return (
     <>
       <Swiper
@@ -20,6 +21,20 @@ export const MainBanner = () => {
         autoplay={autoplayConfig}
         pagination={{ clickable: true }}
         className="w-full max-h-[500px] overflow-hidden"
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+          },
+        }}
       >
         {mainBannerItems?.map((e) => {
           return (
@@ -27,7 +42,9 @@ export const MainBanner = () => {
               <Image
                 src={e.image}
                 alt={e.alt}
-                className="w-full h-[500px] relative cursor-pointer"
+                width={1920}
+                height={500}
+                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover relative cursor-pointer"
               />
             </SwiperSlide>
           )
