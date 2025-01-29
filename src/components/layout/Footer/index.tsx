@@ -3,7 +3,7 @@ import logo from "@/assets/images/logo.png"
 
 export const Footer = () => {
   return (
-    <footer className="w-full h-auto bg-gray-300 flex flex-col md:flex-row items-center justify-between p-4 md:px-8 lg:px-12">
+    <footer className="w-full h-auto bg-gray-300 flex flex-col md:flex-row items-center justify-between p-4 px-4 lg:px-8 xl:px-16 2xl:px-32 ">
       <Image
         src={logo}
         alt="Logo da Empresa"

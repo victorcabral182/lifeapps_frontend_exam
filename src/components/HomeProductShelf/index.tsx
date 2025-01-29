@@ -2,12 +2,13 @@
 
 import { getProducts } from "@/services/products"
 import { IData, IProduct } from "@/types"
-import { IHomeFilter, TFilter } from "@/types/home"
-import { Button, Pagination, Select } from "antd"
+import { IHomeFilter } from "@/types/home"
+import { Pagination, Select } from "antd"
 import { useEffect, useState } from "react"
 import { ProductCardItem } from "../ProductCardItem"
-import { buttons, filterOptions } from "@/constants/HomePage"
+import { filterOptions } from "@/constants/HomePage"
 import { useRouter } from "next/navigation"
+import { HomeFilter } from "../HomeFilter/HomeFilter"
 
 export const HomeProductShelf = () => {
   const { push } = useRouter()
@@ -19,11 +20,6 @@ export const HomeProductShelf = () => {
     page: 1,
     pageSize: 6,
   })
-
-  const handleType = (name: TFilter) => {
-    if (name === filter?.type) return "primary"
-    else return "default"
-  }
 
   async function tryGetProducts() {
     try {
@@ -48,25 +44,11 @@ export const HomeProductShelf = () => {
 
   return (
     <>
-      <section className="flex flex-col justify-center items-center p-4 md:p-8">
-        <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-4 w-full px-4 md:px-[256px]">
-          {buttons?.map((e) => {
-            return (
-              <Button
-                key={e}
-                htmlType={"button"}
-                type={handleType(e)}
-                onClick={() =>
-                  setFilter({ ...filter, type: e, sort: filter.sort })
-                }
-                className="uppercase font-semibold w-full  rounded-none py-4 md:py-8"
-              >
-                {e === "ALL" ? "Todos os produtos" : e}
-              </Button>
-            )
-          })}
+      <section className="flex flex-col justify-center items-center p-4 md:p-8 lg:px-8 xl:px-16 2xl:px-32">
+        <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-2 w-full px-4 lg:px-8 xl:px-16 2xl:px-32">
+          <HomeFilter filter={filter} setFilter={(e) => setFilter(e)} />
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-[256px] gap-4 py-4">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 lg:px-8 xl:px-16 2xl:px-32 gap-4 py-4">
           <p className="w-full text-center md:text-left">
             {data?.total} produtos
           </p>
@@ -80,7 +62,7 @@ export const HomeProductShelf = () => {
             onChange={(e) => setFilter({ ...filter, sort: e })}
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 gap-4 md:gap-8 px-4 md:px-[256px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 gap-4 md:gap-8 lg:px-8 xl:px-16 2xl:px-32 px-4">
           {data?.items?.map((item: IProduct) => {
             const isPromo = Boolean(item.discount_percentage)
             return (
