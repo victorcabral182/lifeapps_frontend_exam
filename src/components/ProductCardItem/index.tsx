@@ -23,10 +23,10 @@ export const ProductCardItem = ({
         !hideExtraInfo
           ? "hover:scale-105 cursor-pointer rounded-b-lg rounded-t-sm"
           : "rounded-lg"
-      } shadow-xl overflow-hidden w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] h-full`}
+      } shadow-xl overflow-hidden w-full h-full lg:h-fit xl:h-full`}
     >
       <DiscountFlag discountPercentage={item?.discount_percentage} />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center w-full">
         <Image
           width={1500}
           height={1500}

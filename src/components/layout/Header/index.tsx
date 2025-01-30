@@ -18,7 +18,7 @@ export const Header = () => {
   const handleUserClick = () => {}
 
   return (
-    <header className="fixed z-50 bg-[#fefefe] w-full h-[80px] max-h-[80px] px-4 lg:px-8 xl:px-16 2xl:px-32 flex justify-between items-center border-b border-b-gray-200">
+    <header className="fixed z-50 bg-[#fefefe] w-full h-[80px] max-h-[80px] px-4 lg:px-8 xl:px-16 2xl:px-[256px] flex justify-between items-center border-b border-b-gray-200">
       <Link href={"/"}>
         <Image
           src={logo}
