@@ -14,7 +14,7 @@ export default function CartPage() {
   ]
 
   return (
-    <section className="flex flex-col min-h-[calc(100vh-212px)]  gap-4 px-4 lg:px-8 xl:px-16 2xl:px-32 py-8">
+    <section className="flex flex-col min-h-[calc(100vh-212px)]  gap-4 px-4 lg:px-8 xl:px-16 2xl:px-[256px] py-8">
       <Breadcrumb
         className="pt-4 font-semibold text-sm md:text-base"
         items={items}

@@ -24,7 +24,7 @@ export const GeneralProductInfo = (product: IProduct) => {
   }, [push])
 
   return (
-    <div className="flex flex-col gap-4 md:gap-6 border rounded-2xl p-4 md:p-6 shadow-lg bg-white w-full max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
+    <div className="flex flex-col gap-4 md:gap-6 border rounded-2xl p-4 md:p-6 shadow-lg bg-white w-full lg:max-w-lg xl:max-w-xl 2xl:ml-auto">
       <div className="flex flex-col gap-3 md:gap-4">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">
           {product?.name}

@@ -47,12 +47,12 @@ export default function ProductIdPage() {
 
   if (data)
     return (
-      <section className="flex flex-col gap-4 px-4 md:px-16 lg:px-32 xl:px-64">
+      <section className="flex flex-col gap-4 px-4 lg:px-8 xl:px-16 2xl:px-[256px]">
         <Breadcrumb
           className="pt-4 font-semibold"
           items={[{ title: <Link href="/">Home</Link> }, { title: data?.name }]}
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-10 2xl:gap-20 sm:mb-10">
           <ProductCardItem
             item={data}
             onClick={() => {}}
