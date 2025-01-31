@@ -1,12 +1,8 @@
 import { Button, Collapse } from "antd"
 import { FilterOutlined } from "@ant-design/icons"
 import { buttons } from "@/constants/HomePage"
-import { IHomeFilter, TFilter } from "@/types/home"
-
-interface IHomeFilterProps {
-  filter: IHomeFilter
-  setFilter: (e: IHomeFilter) => void
-}
+import { IHomeFilterProps } from "./types"
+import { TFilter } from "@/types/home"
 
 export const HomeFilter = ({ filter, setFilter }: IHomeFilterProps) => {
   const handleType = (name: TFilter) => {
@@ -15,7 +11,7 @@ export const HomeFilter = ({ filter, setFilter }: IHomeFilterProps) => {
   }
 
   return (
-    <>
+    <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-2 w-full px-4 lg:px-8 xl:px-16 2xl:px-[256px]">
       <Collapse
         className="w-full text-center md:hidden"
         bordered={false}
@@ -63,6 +59,6 @@ export const HomeFilter = ({ filter, setFilter }: IHomeFilterProps) => {
           </Button>
         )
       })}
-    </>
+    </div>
   )
 }

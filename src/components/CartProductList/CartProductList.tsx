@@ -2,7 +2,7 @@
 
 import { useCart } from "@/hooks/useCart"
 import { formatCurrency } from "@/utils"
-import { CheckoutProductCard } from "../CheckoutProductCard"
+import { CheckoutProductCard } from "../CheckoutProductCard/CheckoutProductCard"
 
 export const CartProductList = () => {
   const { cartItems, totalItems, totalPrice } = useCart()
