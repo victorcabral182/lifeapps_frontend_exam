@@ -1,19 +1,22 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import { useDispatch } from "react-redux"
 import { useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
+import { useCart } from "@/hooks/useCart"
 import { Button, Select } from "antd"
-import { IProduct } from "@/types"
-import { addItem } from "@/redux/slices/cartSlice"
 import { formatCurrency } from "@/utils"
+import { addItem } from "@/redux/slices/cartSlice"
 import { options } from "@/constants/general-constants"
+import { IProduct } from "@/types"
 
 export const GeneralProductInfo = (product: IProduct) => {
-  const dispatch = useDispatch()
   const { push } = useRouter()
+  const { totalItems } = useCart()
 
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1)
+
+  const dispatch = useDispatch()
 
   const handleAddToCart = useCallback(() => {
     dispatch(addItem({ ...product, quantity: selectedQuantity }))
@@ -47,7 +50,6 @@ export const GeneralProductInfo = (product: IProduct) => {
               )}
             </div>
           )}
-
           <div className="flex flex-col">
             <p className="text-xl md:text-2xl font-semibold text-gray-800">
               {product?.promotional_price
@@ -71,17 +73,17 @@ export const GeneralProductInfo = (product: IProduct) => {
         </p>
         <Select
           options={options}
+          className="w-full"
           placeholder="Quantidade"
           value={selectedQuantity}
           onChange={(value) => setSelectedQuantity(value)}
-          className="w-full"
         />
         <Button
           size="large"
           type="primary"
           htmlType="button"
-          className="uppercase bg-[#007cc3] hover:bg-[#1d4670] border-none font-medium tracking-wider text-xs md:text-sm lg:text-base text-white rounded-lg w-full"
           onClick={handleAddToCart}
+          className="uppercase bg-[#007cc3] hover:bg-[#1d4670] border-none font-medium tracking-wider text-xs md:text-sm lg:text-base text-white rounded-lg w-full"
         >
           Adicionar ao carrinho
         </Button>
@@ -89,8 +91,9 @@ export const GeneralProductInfo = (product: IProduct) => {
           size="large"
           type="primary"
           htmlType="button"
-          className="uppercase bg-[#007cc3] hover:bg-blue-700 border-none font-medium tracking-wider text-xs md:text-sm lg:text-base text-white rounded-lg w-full"
+          disabled={!totalItems}
           onClick={handleNavigateToCart}
+          className="uppercase bg-[#007cc3] hover:bg-blue-700 border-none font-medium tracking-wider text-xs md:text-sm lg:text-base text-white rounded-lg w-full"
         >
           Finalizar compra
         </Button>

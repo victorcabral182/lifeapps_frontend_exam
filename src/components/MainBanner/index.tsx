@@ -15,6 +15,7 @@ export const MainBanner = () => {
   return (
     <>
       <Swiper
+        data-testid="main-banner"
         speed={1000}
         slidesPerView={1}
         modules={swiperModules}

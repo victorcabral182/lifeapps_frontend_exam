@@ -44,7 +44,10 @@ export const HomeProductShelf = () => {
 
   return (
     <>
-      <section className="flex flex-col justify-center items-center p-4 md:p-8 lg:px-8 xl:px-16 2xl:px-32">
+      <section
+        className="flex flex-col justify-center items-center p-4 md:p-8 lg:px-8 xl:px-16 2xl:px-32"
+        data-testid="home-product-shelf"
+      >
         <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-2 w-full px-4 lg:px-8 xl:px-16 2xl:px-[256px]">
           <HomeFilter filter={filter} setFilter={(e) => setFilter(e)} />
         </div>

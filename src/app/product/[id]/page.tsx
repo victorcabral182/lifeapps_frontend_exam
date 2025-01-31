@@ -25,8 +25,9 @@ export default function ProductIdPage() {
   const { id }: { id: string } = useParams()
   const { push } = useRouter()
 
-  const [data, setData] = useState<IProduct>()
+  const [data, setData] = useState<IProduct | null>(null)
   const [swiper, setSwiper] = useState<IProduct[]>([])
+  const [loading, setLoading] = useState(true)
 
   async function tryGetInfo(id: string) {
     try {
@@ -34,10 +35,13 @@ export default function ProductIdPage() {
         getProductById(id),
         getProducts({}),
       ])
-      setData(product?.data?.[0])
+      const productData = product?.data?.[0] ?? null
+      setData(productData)
       setSwiper(allItems?.data)
     } catch (e) {
       console.error(e)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -45,15 +49,23 @@ export default function ProductIdPage() {
     if (id) tryGetInfo(id)
   }, [id])
 
+  useEffect(() => {
+    if (!loading && !data) {
+      push("/404")
+    }
+  }, [loading, data, push])
+
   if (data)
     return (
       <section className="flex flex-col gap-4 px-4 lg:px-8 xl:px-16 2xl:px-[256px]">
         <Breadcrumb
+          data-testid="breadcrumb"
           className="pt-4 font-semibold"
           items={[{ title: <Link href="/">Home</Link> }, { title: data?.name }]}
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-10 2xl:gap-20 sm:mb-10">
           <ProductCardItem
+            data-testid="product-card"
             item={data}
             onClick={() => {}}
             hideExtraInfo={true}
@@ -63,6 +75,7 @@ export default function ProductIdPage() {
         </div>
         <p className="font-semibold">Veja outros produtos como este</p>
         <Swiper
+          data-testid="product-carousel"
           speed={1000}
           slidesPerView={1}
           breakpoints={{
@@ -93,4 +106,6 @@ export default function ProductIdPage() {
         </Swiper>
       </section>
     )
+
+  return null
 }

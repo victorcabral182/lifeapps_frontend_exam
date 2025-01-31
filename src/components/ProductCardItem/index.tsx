@@ -18,6 +18,7 @@ export const ProductCardItem = ({
 }: IProductCardItemProps) => {
   return (
     <div
+      data-testid="product-item"
       onClick={onClick}
       className={`relative transition-all duration-150 ${
         !hideExtraInfo
