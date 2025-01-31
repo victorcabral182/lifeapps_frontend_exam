@@ -1,5 +1,5 @@
-import { HomeProductShelf } from "@/components/HomeProductShelf"
-import { MainBanner } from "@/components/MainBanner"
+import { MainBanner } from "@/components/MainBanner/MainBanner"
+import { HomeProductShelf } from "@/components/HomeProductShelf/HomeProductShelf"
 
 export default function Home() {
   return (

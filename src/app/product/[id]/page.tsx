@@ -15,8 +15,8 @@ import { Autoplay, Controller } from "swiper/modules"
 
 import { getProductById, getProducts } from "@/services/products"
 import { IProduct } from "@/types"
-import { ProductCardItem } from "@/components/ProductCardItem"
-import { GeneralProductInfo } from "@/components/GeneralProductInfo"
+import { ProductCardItem } from "@/components/ProductCardItem/ProductCardItem"
+import { GeneralProductInfo } from "@/components/GeneralProductInfo/GeneralProductInfo"
 
 const swiperModules = [Autoplay, Controller]
 const autoplayConfig = { delay: 4000 }

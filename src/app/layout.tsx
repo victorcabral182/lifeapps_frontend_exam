@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Header } from "@/components/layout/Header"
-import { Footer } from "@/components/layout/Footer"
+import { Header } from "@/components/layout/Header/Header"
+import { Footer } from "@/components/layout/Footer/Footer"
 import "@ant-design/v5-patch-for-react-19"
 import ReduxProvider from "./provider"
 

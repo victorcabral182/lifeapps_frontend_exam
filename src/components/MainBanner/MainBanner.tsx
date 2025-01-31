@@ -15,11 +15,12 @@ export const MainBanner = () => {
   return (
     <>
       <Swiper
-        data-testid="main-banner"
+        loop
         speed={1000}
         slidesPerView={1}
         modules={swiperModules}
         autoplay={autoplayConfig}
+        data-testid="main-banner"
         pagination={{ clickable: true }}
         className="w-full max-h-[500px] overflow-hidden"
         breakpoints={{
@@ -45,7 +46,7 @@ export const MainBanner = () => {
                 alt={e.alt}
                 width={1920}
                 height={500}
-                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover relative cursor-pointer"
+                className="w-full h-auto sm:h-[400px] md:h-[500px] object-cover relative cursor-pointer"
               />
             </SwiperSlide>
           )
